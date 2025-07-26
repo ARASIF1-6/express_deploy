@@ -3,6 +3,7 @@ import { Sequelize } from 'sequelize';
 import userRoutes from './routes/userRoutes.js';
 import dotenv from 'dotenv';
 import { initializeSchema } from './db/schema.js';
+import serverless from 'serverless-http';
 
 dotenv.config();
 
@@ -37,4 +38,5 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-module.exports.handler = serverless(app);
+// Export for Vercel
+export const handler = serverless(app);
