@@ -1,0 +1,39 @@
+import { Sequelize, DataTypes } from 'sequelize';
+
+export default (sequelize) => {
+  const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.NOW
+    }
+  }, {
+    tableName: 'users',
+    schema: 'public',
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  });
+
+  return User;
+};
