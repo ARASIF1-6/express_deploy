@@ -28,7 +28,10 @@ async function initializeDatabase() {
   }
 }
 
-initializeDatabase();
+// initializeDatabase();
+(async () => {
+  await initializeDatabase();
+})();
 
 // Routes
 app.use('/api/users', userRoutes);
